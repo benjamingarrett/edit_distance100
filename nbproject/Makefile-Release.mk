@@ -35,6 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/_ext/c56916c5/MurmurHash32.o \
+	${OBJECTDIR}/_ext/c56916c5/MurmurHash64A.o \
+	${OBJECTDIR}/_ext/554cfc1b/memo.o \
+	${OBJECTDIR}/_ext/554cfc1b/memo_long_int.o \
 	${OBJECTDIR}/edit_distance.o \
 	${OBJECTDIR}/main.o
 
@@ -62,6 +66,26 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/edit_distance100: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/edit_distance100 ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/_ext/c56916c5/MurmurHash32.o: ../hashing/MurmurHash32.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/c56916c5
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/c56916c5/MurmurHash32.o ../hashing/MurmurHash32.c
+
+${OBJECTDIR}/_ext/c56916c5/MurmurHash64A.o: ../hashing/MurmurHash64A.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/c56916c5
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/c56916c5/MurmurHash64A.o ../hashing/MurmurHash64A.c
+
+${OBJECTDIR}/_ext/554cfc1b/memo.o: ../memoization/memo.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/554cfc1b
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/554cfc1b/memo.o ../memoization/memo.c
+
+${OBJECTDIR}/_ext/554cfc1b/memo_long_int.o: ../memoization/memo_long_int.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/554cfc1b
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/554cfc1b/memo_long_int.o ../memoization/memo_long_int.c
 
 ${OBJECTDIR}/edit_distance.o: edit_distance.c 
 	${MKDIR} -p ${OBJECTDIR}

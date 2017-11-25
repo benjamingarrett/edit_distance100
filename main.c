@@ -17,6 +17,6 @@
 
 int main(int argc, char** argv) {
 
-    solve_edit_distance(argc, argv);
-    return (EXIT_SUCCESS);
+  solve_edit_distance(argc, argv);
+  return (EXIT_SUCCESS);
 }

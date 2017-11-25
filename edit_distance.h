@@ -18,7 +18,11 @@
 extern "C" {
 #endif
 
-    void solve_edit_distance(int argc, char **argv);
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+#include "../memoization/memo_long_int.h"
+  void solve_edit_distance(int argc, char **argv);
 
 
 #ifdef __cplusplus

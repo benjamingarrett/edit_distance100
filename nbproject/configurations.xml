@@ -4,7 +4,11 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>../hashing/MurmurHash32.h</itemPath>
+      <itemPath>../hashing/MurmurHash64A.h</itemPath>
       <itemPath>edit_distance.h</itemPath>
+      <itemPath>../memoization/memo.h</itemPath>
+      <itemPath>../memoization/memo_long_int.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -13,8 +17,12 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>../hashing/MurmurHash32.c</itemPath>
+      <itemPath>../hashing/MurmurHash64A.c</itemPath>
       <itemPath>edit_distance.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>../memoization/memo.c</itemPath>
+      <itemPath>../memoization/memo_long_int.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -41,6 +49,22 @@
           <standard>10</standard>
         </cTool>
       </compileType>
+      <item path="../hashing/MurmurHash32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../hashing/MurmurHash32.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../hashing/MurmurHash64A.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../hashing/MurmurHash64A.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../memoization/memo.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../memoization/memo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../memoization/memo_long_int.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../memoization/memo_long_int.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="edit_distance.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="edit_distance.h" ex="false" tool="3" flavor2="0">
@@ -69,6 +93,22 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="../hashing/MurmurHash32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../hashing/MurmurHash32.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../hashing/MurmurHash64A.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../hashing/MurmurHash64A.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../memoization/memo.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../memoization/memo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../memoization/memo_long_int.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../memoization/memo_long_int.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="edit_distance.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="edit_distance.h" ex="false" tool="3" flavor2="0">
