@@ -47,6 +47,7 @@
       <compileType>
         <cTool>
           <standard>10</standard>
+          <commandLine>-pg</commandLine>
         </cTool>
       </compileType>
       <item path="../hashing/MurmurHash32.c" ex="false" tool="0" flavor2="0">
