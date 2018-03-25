@@ -1,17 +1,11 @@
 b=../dist/Debug/GNU-Linux
-input_directory=../../misc_phd/input/lcss_instances
+input_directory=../../misc_phd/input/lcs_instances
+fname=edit_distance_aggregate_results.csv
 key_len=8
 val_len=8
 cuckooK=4
 original_size=65536
 prt=51200
-
-#strategy=non_memo
-#strategy=cuckoo_hashing
-#strategy=linear_probe_hashing
-first=$input_directory/p_0010_001
-second=$input_directory/p_0010_001
-#$b/edit_distance100 --first_pattern $first --second_pattern $second --caching_strategy $strategy --key_length $key_len --value_length $val_len
 
 strategies=(
 linear_probe_hashing
@@ -24,50 +18,50 @@ nru_d_drunken_absolute
 nru_clock_relative
 nru_d_drunken_relative
 )
-#fname_list=(
-#$input_directory/r/40/random-40-0.lcss
-#$input_directory/r/40/random-40-1.lcss
-#$input_directory/r/40/random-40-2.lcss
-#)
 
-#fname_list=(
-#$input_directory/r/80/random-80-0.lcss
-#$input_directory/r/80/random-80-1.lcss
-#$input_directory/r/80/random-80-2.lcss
-#)
-
-#fname_list=(
-#$input_directory/r/160/random-160-0.lcss
-#$input_directory/r/160/random-160-1.lcss
-#$input_directory/r/160/random-160-2.lcss
-#)
-
-#fname_list=(
-#$input_directory/r/320/random-320-0.lcss
-#$input_directory/r/320/random-320-1.lcss
-#$input_directory/r/320/random-320-2.lcss
-#)
-
-#fname_list=(
-#$input_directory/t/test-40-000-111.lcss
-#$input_directory/t/test-80-000-111.lcss
-#$input_directory/t/test-160-000-111.lcss
-#$input_directory/t/test-40-111-111.lcss
-#$input_directory/t/test-80-111-111.lcss
-#$input_directory/t/test-160-111-111.lcss
-#)
-
-fname_list=(
-$input_directory/t/test-40-012-210.lcss
-$input_directory/t/test-80-012-210.lcss
-$input_directory/t/test-160-012-210.lcss
+types=(
+test-000-111
+test-012-210
+test-0101-1010
+test-111-111
+random-0-1
+random-0-9
+random-0-19
+test-000111-111000
+test-001122-221100
+test-001122-112200
 )
 
-#fname_list=(
-#$input_directory/t/test-80-0101-1010.lcss
-#)
+sizes=(
+40
+80
+)
 
+k=0
+for (( i=0; i<${#sizes[@]}; i++ ));
+do
+  for (( j=0; j<${#types[@]}; j++ ));
+  do
+    instances[k]=${sizes[i]}-${types[j]}
+    k=$(( $k + 1 ))
+  done
+done
+k=0
+for (( i=0; i<${#instances[@]}; i++ ));
+do
+  fnames[k]=$input_directory/${instances[i]}.lcs
+  k=$(( $k + 1 ))
+done
 strategies=(${strategies[2]})
+
+type=0
+while [ $type -le 9 ]
+do
+  pair=${fnames[type]}
+  instance=${instances[type]}
+
+done
+
 
 size=163
 j=1
