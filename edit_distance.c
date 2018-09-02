@@ -5,11 +5,10 @@
 
 #define PRINT_REFERENCES  
 
-const char * first_pattern_parameter = "--first_pattern";
-const char * second_pattern_parameter = "--second_pattern";
-const char * pair_of_patterns_parameter = "--pattern_pair";
-const char * pattern_reference_threshold_parameter = "--pattern_reference_threshold";
-const char * lru_queue_size_parameter = "--lru_queue_size";
+const char * first_pattern_parameter = "--edit_dist_first_pattern";
+const char * second_pattern_parameter = "--edit_dist_second_pattern";
+const char * pair_of_patterns_parameter = "--edit_dist_pattern_pair";
+const char * pattern_reference_threshold_parameter = "--edit_dist_pattern_reference_threshold";
 
 int * X, * Y;
 long int nX, nY;
@@ -17,13 +16,19 @@ long int nX, nY;
 long int pattern_references;
 long int cache_reads;
 long int cache_writes;
+long int cache_misses;
+long int cache_hits;
 long int pattern_reference_threshold;
 long int memo_calls, dist_calls;
 long int lru_queue_size;
+long int distance;
+
+int64_t levenshtein_distance(long int len_s, long int len_t);
+
+/* PUBLIC */
 
 void initialize_edit_distance(int argc, char **argv) {
 
-  initialize_long_int_cache(argc, argv);
   char first_pattern_fname[200], second_pattern_fname[200], double_pattern_fname[200];
   char have_double_pattern = FALSE;
   for(int g=1; g<argc; g++){
@@ -46,11 +51,6 @@ void initialize_edit_distance(int argc, char **argv) {
     if(strcmp(argv[g], pattern_reference_threshold_parameter) == 0){
       if(g+1 < argc){
         pattern_reference_threshold = (uint64_t) atoi(argv[++g]);
-      }
-    }
-    if(strcmp(argv[g], lru_queue_size_parameter) == 0){
-      if(g+1 < argc){
-        lru_queue_size = (uint64_t) atoi(argv[++g]);
       }
     }
   }
@@ -94,7 +94,7 @@ void initialize_edit_distance(int argc, char **argv) {
     X = calloc(nX, sizeof(int));
 //    printf("reading %ld symbols\n", nX);
     for (long int g = 0; g < nX; g++) {
-      n = fscanf(fp, "%ld", &X[g]);
+      n = fscanf(fp, "%d", &X[g]);
 //      printf(">%d<", X[g]);
     }
 //    printf("\n");
@@ -102,7 +102,7 @@ void initialize_edit_distance(int argc, char **argv) {
     Y = calloc(nY, sizeof(int));
 //    printf("reading %ld symbols\n", nY);
     for (long int g = 0; g < nY; g++) {
-      n = fscanf(fp, "%ld", &Y[g]);
+      n = fscanf(fp, "%d", &Y[g]);
 //      printf(">%d<", Y[g]);
     }
 //    printf("\n");
@@ -111,8 +111,34 @@ void initialize_edit_distance(int argc, char **argv) {
   pattern_references = 0;
   cache_reads = 0;
   cache_writes = 0;
-  memo_calls = dist_calls = 0;
+  memo_calls = dist_calls = cache_misses = cache_hits = 0;
 }
+
+void reset_edit_distance(){
+  cache_misses = cache_hits = 0;
+}
+
+int32_t get_cache_misses_edit_distance(){
+  return cache_misses;
+}
+
+int32_t get_cache_hits_edit_distance(){
+  return cache_hits;
+}
+
+void solve_edit_distance(){
+  distance = levenshtein_distance(nX, nY);
+}
+
+void solve_edit_distancei_OLD(int argc, char **argv) {
+
+  initialize_long_int_cache(argc, argv);
+  initialize_edit_distance(argc, argv);
+  distance = levenshtein_distance(nX, nY);
+  printf("%ld %ld %ld %ld\n", distance, lru_queue_size, dist_calls, memo_calls);
+}
+
+/* PRIVATE */
 
 uint64_t generate_key(int16_t i, int16_t j) {
 //  uint64_t key = (((int16_t) i) << 16) | (((int16_t) j) & 0xffffffffu);
@@ -173,9 +199,4 @@ int64_t memo_levenshtein_distance(long int i, long int j) {
   return (c3 < min) ? c3 : min;
 }
 
-void solve_edit_distance(int argc, char **argv) {
 
-  initialize_edit_distance(argc, argv);
-  int64_t d = levenshtein_distance(nX, nY);
-  printf("%ld %ld %ld %ld\n", d, lru_queue_size, dist_calls, memo_calls);
-}
