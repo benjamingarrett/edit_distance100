@@ -23,9 +23,9 @@ extern "C" {
 #include <string.h>
 #include "../memoization/memo_long_int.h"
 void initialize_edit_distance(int argc, char **argv);
-void reset_edit_distance();
-int32_t get_cache_misses_edit_distance();
-int32_t get_cache_hits_edit_distance();
+void reset_edit_distance(long int p);
+long int get_cache_misses_edit_distance();
+long int get_cache_hits_edit_distance();
 void solve_edit_distance();
 void solve_edit_distance_OLD(int argc, char **argv);
 

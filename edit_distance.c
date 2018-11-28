@@ -114,15 +114,15 @@ void initialize_edit_distance(int argc, char **argv) {
   memo_calls = dist_calls = cache_misses = cache_hits = 0;
 }
 
-void reset_edit_distance(){
+void reset_edit_distance(long int p){
   cache_misses = cache_hits = 0;
 }
 
-int32_t get_cache_misses_edit_distance(){
+long int get_cache_misses_edit_distance(){
   return cache_misses;
 }
 
-int32_t get_cache_hits_edit_distance(){
+long int get_cache_hits_edit_distance(){
   return cache_hits;
 }
 
