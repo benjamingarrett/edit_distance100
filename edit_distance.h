@@ -18,16 +18,14 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
-#include "../memoization/memo_long_int.h"
-void initialize_edit_distance(int argc, char **argv);
-void reset_edit_distance(long int p);
-long int get_cache_misses_edit_distance();
-long int get_cache_hits_edit_distance();
-void solve_edit_distance();
-void solve_edit_distance_OLD(int argc, char **argv);
+  #include <stdint.h>
+  void initialize_edit_distance(int argc, char **argv);
+  void set_cache_miss_threshold_edit_distance(int64_t t);
+  void set_preemptive_halt_edit_distance(int p);
+  void reset_edit_distance(long int p);
+  long int get_cache_misses_edit_distance();
+  void solve_edit_distance();
+  void solve_edit_distance_standalone(int argc, char **argv);
 
 #ifdef __cplusplus
 }
