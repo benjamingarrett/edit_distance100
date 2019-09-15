@@ -15,8 +15,7 @@
 #include <stdlib.h>
 #include "edit_distance.h"
 
-int main(int argc, char** argv) {
-
+int main(int argc, char** argv){
   solve_edit_distance(argc, argv);
-  return (EXIT_SUCCESS);
+  return 0;
 }

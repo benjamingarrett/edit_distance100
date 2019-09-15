@@ -32,7 +32,8 @@ char check_preemptive_halt_edit_dist_deactivated();
 void initialize_edit_distance(int argc, char **argv){
   //printf("initialize edit distance\n");
   char instance_fname[200];
-  for(int g=1; g<argc; g++){
+  int64_t g;
+  for(g=1; g<argc; g++){
     if(strcmp(argv[g], edit_dist_instance_fname_parameter) == 0){
       if(g+1 < argc){
         strcpy(instance_fname, &argv[++g][0]);
@@ -48,13 +49,13 @@ void initialize_edit_distance(int argc, char **argv){
   }
   n = fscanf(fp, "%d\n", &nX);
   X = calloc(nX, sizeof(int64_t));
-  for(int64_t g = 0; g < nX; g++){
+  for(g = 0; g < nX; g++){
     n = fscanf(fp, "%ld", &X[g]);
     //printf(">%ld<", X[g]);
   }
   n = fscanf(fp, "%d\n", &nY);
   Y = calloc(nY, sizeof(int64_t));
-  for(int64_t g = 0; g < nY; g++){
+  for(g = 0; g < nY; g++){
     n = fscanf(fp, "%ld", &Y[g]);
     //printf(">%ld<", Y[g]);
   }
@@ -87,11 +88,11 @@ void solve_edit_distance(){
   distance = levenshtein_distance(nX, nY);
 }
 
-void solve_edit_distancei_standalone(int argc, char **argv) {
+void solve_edit_distancei_standalone(int argc, char **argv){
   initialize_long_int_cache(argc, argv);
   initialize_edit_distance(argc, argv);
   distance = levenshtein_distance(nX, nY);
-  printf("%ld %ld %ld %ld\n", distance, lru_queue_size, dist_calls, memo_calls);
+  //printf("%ld %ld %ld %ld\n", distance, lru_queue_size, dist_calls, memo_calls);
 }
 
 /* PRIVATE */
